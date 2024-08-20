@@ -1,0 +1,261 @@
+---
+title: "Statistics final report - Face mask study"
+author: "Wei-Ling Liao, University of Konstanz "
+date: "09/10/2022"
+fontsize: 10pt
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    linkcolor: red
+    number_sections: true 
+    toc_collapsed: yes
+    theme: united
+editor_options: 
+chunk_output_type: console
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#  Introduction
+##  Literature review
+Daily-life conversation relies heavily on our speech perception. Because of the COVID-19 pandemic, interactions with talkers wearing face masks have become part of our daily routine. Prior to the COVID-19, mask-wearing was limited to healthcare workers in western countries and people often possess negative attitudes toward face masks. In contrary, mask-wearing has been prevalent in earlier times in East Asia countries, such as China, Japan, Korea, Taiwan etc. According to Jaehwan Hyun et al. 2022, masked societies in East Asia have their history and meaning. It establishes a common account by the symbolic attachment of politeness , Wu Lien-teh’s work against the Manchurian plague, SARS epidemic etc. It is said that face-mask wearing in East Asia is an integral part of life on the basis of cultural and scientific development.
+
+Though face masks show advantages of preventing diseases to be spread, there are also several disadvantages of wearing masks. Apart from a certain discomfort and minor potential health risks of long-term wearing (e.g., de novo headaches; Ramirez-Moreno JM et al. 2021), mask wearing strongly interfere with communication. For example, the attenuation of sound energy and loss of visual cues and facial expression (Moon, I.-J. et al. 2022; Sönnichsen et al.2022). According to the previous research, there was a large improvement in speech perception of the normal-hearing subjects when visual cues provided by the mouth region were available, especially in noisy environments (Sönnichsen et al.2022). Furthermore, in accordance with previous findings a similar reduction in mid- and high frequency sound levels could be detected (Goldin A et al. 2020; Corey RM et al. 2020; Pörschmann C et al. 2020). Interestingly some studies even reported that consonants require a much more precise articulatory configuration than vowels (Flege et al. 1988; McFarland and Baum 1995), whcich means that acoustic realization of fricatives in particular seems to be disproportionately impacted. With face mask, the researchers described an average of 20% to 31% intelligibility loss depending on the types of the masks according to studies. (Sönnichsen et al.2022)
+
+It should be noted that the topics about cross-cultural perspectives of speech perception experiments on face mask are relatively new and literature on this topic are rare. However, given the investigation of different mask wearing cultures in West and East and the scientific evidences about speech perception, it is therefore of current interest to explore how different cultures, referred to as habits of mask wearing in this study, affect people's sensibility of speech perception.
+
+##  Research Questions with Hypotheses
+On the basis of the different mask wearing habits between Western and Eastern countries and the downsides of face mask wearing on speech perception, here comes the interesting questions:
+
+(1) To what extend does wearing a face mask affect speech perception in a phoneme monitoring task? 
+(2) Are there any cross-linguistic and cross-cultural differences between Western countries'(Hereinafter referred to as L1 English speakers) and East Asia countries' speakers (Hereinafter referred to as Korean speakers)?
+
+Given the research questions, here are our hypotheses:
+
+H0: Compared to  L1 English speakers, Korean have better performance in face-masked speech perception. 
+
+H1: Compared to L1 English speakers, Korean do not have better performance in face-masked speech perception. 
+
+#  Method
+## Participants 
+Participants were recruited from students at the University of Konstanz in different bachelor and master programs. There were 101 aged between 20 and 40 years old (mean age: 30.6 years) participants in total from 10 different countries (Including Scotland, England, US, Ireland, Canada, India, Singapore, New Zealand, Australia and Korea). Given our research questions, we divided the participants into L1 English speakers and Korean speakers as the baseline of difference between western and eastern. The baseline is based on if English is listed as one of the country's official language. In this case, English is not an official language of Korea, while it does for all the other countries. For the purpose of the study, participants were required to have corrected visual ability, normal hearing ability and have at least an high-intermediate English proficiency (> CERF B2). 
+
+## Materials and procedure 
+### Stimuli
+Two experimental conditions were created. Video clips featured a native English speaker uttering a short word while wearing a medical face mask or without mask in a quiet environment. The stimuli were single words containing one of four English fricative sounds (i.e., F, TH, SH, S). 
+
+### Procedure
+This study was conducted on the Gorilla platform. Participants were instructed to find a quiet place with stable internet connection and to use earphone. Mobile phone and computer were both accepted as presentation tool. 
+
+First, the loudness test was conducted to ensure the participants can hear the sound clearly. Next, an experimental instruction in English, which takes approximately 5 minutes to read with a participant consent form were presented. Before the experiment started, participants were asked to complete a short trial, which gave them chances to familiarize themselves with the task in advance. During the experiment, participants were presented with a series of short videos of a native English speaker, who uttered single words either masked or unmasked. The participants were asked to press the button that corresponds to the fricative word they heard or X button if they did not hear the sound. In each task, each video was presented only once. Furthermore, participants were required to respond as fast as possible. The experiment was conducted in one single session with 161 stimuli, which lasted approximately 30 minutes. Lastly, participants that completed the experiment were included in the analysis in this study. 
+
+# Analysis & Results 
+In this section, I discuss interesting questions on data and focus on analyzing the data step by step until a best model for our questions were found. 
+
+First, we loaded useful and necessary packages and libraries and factorized Participants ID. To make sure the data was loaded correctly, several data information (i.e., columns, rows, numbers of participants, countries etc.) were presented. Answer of the question "Does face mask affect speech perception?" is generally acknowledged; in our data analysis, the accuracy on with-mask condition was indeed lower than the accuracy on no-mask condition. 
+
+Furthermore, to make the study more complete, Korean fricatives were investigated. According to Cheon & Anderson (2008), Korean has three fricative phonemes, all voiceless: the sibilants /s/ and /s*/ and the non-sibilant /h/. We found out Korean cannot well distinguish the sound 'TH' and 'F' and this might because 'TH' and 'F' do not exist in Korean language. Though the fact could effect Korean's accuracy, participants all have at least high-intermediate level English proficiency. Therefore, it was not further considered in this study.
+
+## Stepwise regression 
+Here we dive deep into the question whether Korean speaker or L1 English speaker have better face-masked speech perception. In the part of data pre-processing, dependent variable *Accuracy* was converted to binary to enable the calculation of the mean rate of correctness. Next, possible independent variables, such as *center of gravity (COG)* and *Intensity* were scaled, while *Log Frequency (logFreq)* was centered. Both processes were done to get rid of a variable's metric. Since in a situation with multiple variables, each variable may have a different standard deviation, but by dividing each variable by the respective standard deviation, it is possible to convert all variables into a scale of standard units (B. Winter 2020). Next, it should be mentioned that our dependent variable is Accuracy, reaction time data and other irrelevant information were not included in the analysis. We filtered out those columns in our study and generated four tables : English_nm2, English_wm2, Korea_nm2, Korea_wm2 ('nm' refers to no-mask; 'wm' refers to with-mask). Since we were dealing with with-masked speech perception, further analysis focused on English_wm2 and Korea_wm2 two tables.
+
+Generalized linear mixed-effects models were used to analyze the data. In addition, variables' interaction was applied in the models, in which we wanted to figure out the influence of a predictor on a response depends on another predictor and interactions between continuous variables. Eng_model1 was first built with interactions between intensity, logFreq, COG and a random affect of participants when L1 English speakers listening to with-masked audios. Through the summary() and Anova() functions, the three predictors Intensity, logFreq and COG were individually shown to be significantly important; while intensity influenced the data the most. What's more interesting is that Intensity was shown to depend on logFreq and COG, while the former had larger effect. However, two-way interaction between logFreq and COG and three-way interactions was insignificant. Next, we built Eng_model2, which exclude COG in interaction, the results indicated that three predictors and interaction between Intensity and logFreq were significant to the model. To compare the goodness of the model, anova() was used and it turned out Eng_model1 was better than Eng_model2. This might because the first model included more information of the data and interactions between intensity and COG played a role in the analysis, which should not be ignored.
+
+Kor_model1 was built following the same procedure as Eng_model1 with interaction of three predictors, the results showed that all predictors were individually important. Besides, two-way and three-way interactions were extremely significant; while interactions with COG were a little weaker than the others. Kor_model2 was created without COG interaction; however, comparing with the two models, Kor_model1 was suggested to be better. This was imaginable since interactions of the three predictors already made a strong explanation of the data, excluding any of the predictor is not acceptable and will negatively affect the goodness of the model. 
+
+## Best fit model
+Eng_model1 and Kor_model1 were two best fit models since they captured the data more precisely. From this two models, we figured out that Intensity was vitally important for L1 English speakers in speech perception, compared to other two predictors. On the other hand, the importance of the three predictors seemed to be relatively equal for Korean speakers in speech perception according to the results. 
+
+# Main findings & Discussion
+Both L1 English speakers and Korean speakers have better speech perception performance when they were not wearing mask, with 93.89% accuracy in L1 English speakers and 87.33% accuracy in Korean speakers. On the other hand, speech perception under the with-masked condition were observed to be a bit worse than without-mask condition, with 88.41% accuracy in L1 English speakers and 82.86% accuracy in Korean speakers. The difference between the two conditions is not as significant as one expected. In other words, L1 English speakers had 5.48% declination; while Korean speakers had approximately 4.48% declination. It seems like Korean speakers do not have better performance in face-masked speech perception. 
+
+Apart from the performance on speech perception, the hidden factors affecting the accuracy are worth exploring in this study. For better visualization of the models, several plots were drawn. Firstly, two plots showcasing the odds rations of interaction between various predictors in L1 English speakers and Korean speakers listening to audios of no-mask condition. It is obvious that Korean speakers need more cues to predict the fricative in the word; while English speakers rely basically on Intensity and Log Frequency. Afterwards, predicted probabilities of accuracy on Intensity were drawn. It is suggested that Intensity are both very significant for L1 English speakers and Korean speakers; however, L1 English speakers rely much heavily on it than Korean speakers to figure out the fricatives. 
+
+Next, the low r-squared of the two models might show that the models did not explained much of the variance of the dependent variable. The reasons could be (1) Any field that attempts to predict human behaviour typically has lower R-squared. (2) Further predictors need to be included in the analysis. (3) Experiment was conducted in an uncontrolled environment. However, only r-squared cannot determine whether the coefficient estimates and predictions are biased, instead assessing the residual plots is also needed. Here we created histogram, qqplot and scatterplot of the residuals of the two models. The residuals were not randomly dispersed, instead they are more similar to Gaussian distribution, which is normal for a glmer model. Furthermore, logistic regression, which assumes that the response has been generated by a process that is Bernoulli-distributed, do not require the residuals to be normally distributed. 
+
+The present study rejected the idea Korean speakers have better performance in face-masked speech perception but found out statistically significant predictors of the data, in which it showed that the changes in the predictor values are associated with changes in the response value. The study overall provided an understanding of the speech perception and the interactions between different habits of facemask wearing. Needless to say, more factors, affecting speech perception, such as fricative difference in languages, should be further explored in the future to improve the fitness of the model and could potentially provide varied insights to the research. 
+
+# Code
+
+**Install packages or download libraries**
+```{r packages and libraries, message = FALSE}
+library(tidyverse)
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(lme4)
+library(car)
+library(lmerTest)
+library(report)
+library(sjPlot)
+library(MuMIn)
+```
+**Upload the dataset**
+```{r upload dataset, message = FALSE}
+facemask <- read_csv("data-assignment.csv") %>% 
+mutate_if(is.character, as.factor) %>% #turning "Participant.ID" to factor
+mutate(Participant.ID = as.factor(Participant.ID)) 
+```
+**Check if data loaded successfully**
+```{r check data}
+head(facemask) # the first 6 rows of the data
+nrow(facemask) # 16160 rows
+ncol(facemask) # 17 columns
+```
+```{r data info}
+length(unique(facemask$Participant.ID)) # number of participants
+unique(facemask$Country) #countries
+```
+**Accuracy**
+```{r}
+nomask <- filter(facemask, Condition == "nm") # 8080
+nomask2 <- filter(facemask, Condition == "nm", Accuracy == "0") # 656
+withmask <- filter(facemask, Condition == "wm") # 8080
+withmask2 <- filter(facemask, Condition == "wm", Accuracy == "0") # 1074
+```
+
+**Korean Error Rate**
+```{r}
+koreanfalse <- filter(facemask, Country == 'Korea', Accuracy == '0') # 739
+koreanfalse2 <- filter(facemask, Country == 'Korea', Accuracy == '0', Response == 'TH' | Response == 'F') # 449
+```
+
+**Data preprocessing**
+
+- Here I am converting the categorical data to binary to enable the calculation of the mean rate of correctness.
+```{r}
+facemask %>%  mutate(Accuracy = as.numeric(ifelse(Accuracy == "TRUE", '1', '0'))) -> facemask
+```
+
+- We use scale() to standardize the center of gravity (cog) and the intensity, since both are heavily skewed. Furthrmore, we centered the RT and Logfrequency.
+```{r Standardization and Centering}
+facemask %>%
+  mutate(COG_s = scale(COG)) %>%
+  mutate(Intensity_s = scale(Intensity)) %>% 
+  mutate(RT_c = RT - mean(RT, na.rm = TRUE)) %>% 
+  mutate(LogFreq_c = LogFreq - mean(LogFreq, na.rm = TRUE)) -> facemask2
+```
+
+- We generated other four tables in terms of English / Korean and with / without Mask. And calculated the mean accuracy respectively.
+```{r}
+English_nm2 <- select(facemask2, Participant.ID, Country, Condition, RT_c, Accuracy, LogFreq_c, Intensity_s, COG_s) %>% 
+  filter(Country != 'Korea', Condition == 'nm')
+mean(English_nm2$Accuracy)
+
+English_wm2 <- select(facemask2, Participant.ID, Country, Condition, RT_c, Accuracy, LogFreq_c, Intensity_s, COG_s) %>% 
+  filter(Country != 'Korea', Condition == 'wm')
+mean(English_wm2$Accuracy)
+
+Korea_nm2 <- select(facemask2, Participant.ID, Country, Condition, RT_c, Accuracy, LogFreq_c, Intensity_s, COG_s) %>% 
+  filter(Country == 'Korea', Condition == 'nm')
+mean(Korea_nm2$Accuracy)
+
+Korea_wm2 <- select(facemask2, Participant.ID, Country, Condition, RT_c, Accuracy, LogFreq_c, Intensity_s, COG_s) %>% 
+  filter(Country == 'Korea', Condition == 'wm')
+mean(Korea_wm2$Accuracy)
+```
+
+**Multiple Regression**
+```{r}
+# Interactions between intensity, logFreq, COG in English speakers listening to with-masked audios
+Eng_model1 <- glmer(Accuracy ~ Intensity_s * LogFreq_c * COG_s + (1 | Participant.ID), data = English_wm2, family = "binomial", control = glmerControl(optimizer = "bobyqa"))
+summary(Eng_model1)
+Anova(Eng_model1, type = 'III')
+```
+
+```{r}
+# Interactions between intensity, logFreq, COG in English speakers listening to with-masked audios
+Eng_model2 <- glmer(Accuracy ~ Intensity_s * LogFreq_c + COG_s + (1 | Participant.ID), data = English_wm2, family = "binomial", control = glmerControl(optimizer = "bobyqa"))
+summary(Eng_model1)
+Anova(Eng_model2, type = 'III')
+```
+
+```{r}
+# compare two Eng_models
+anova(Eng_model1, Eng_model2, test = "chisq")
+```
+
+```{r}
+#
+Kor_model1 <- glmer(Accuracy ~ Intensity_s * LogFreq_c * COG_s + (1 | Participant.ID), data = Korea_wm2, family = "binomial", control = glmerControl(optimizer = "bobyqa"))
+summary(Kor_model1)
+Anova(Kor_model1, type = 'III')
+```
+
+```{r}
+Kor_model2 <- glmer(Accuracy ~ Intensity_s * LogFreq_c + COG_s + (1 | Participant.ID), data = Korea_wm2, family = "binomial", control = glmerControl(optimizer = "bobyqa"))
+summary(Kor_model2)
+Anova(Kor_model2, type = 'III')
+```
+
+```{r}
+anova(Kor_model1, Kor_model2, test = 'Chisq')
+```
+
+```{r}
+# Calculating R²
+r.squaredGLMM(Eng_model1)
+r.squaredGLMM(Kor_model1)
+```
+**Plotting**
+```{r}
+# plot Eng_model1
+plot_model(Eng_model1, type ='est')
+```
+```{r}
+# plot Kor_model1
+plot_model(Kor_model1, type ='est')
+```
+```{r}
+# Intensity effect on accuracy of English
+plot_model(Eng_model1, type = 'pred', terms = c('Intensity_s')) + theme_minimal()
+```
+
+```{r}
+# Intensity effect on accuracy of Korea
+plot_model(Kor_model1, type = 'pred', terms = c('Intensity_s')) + theme_minimal()
+```
+
+```{r}
+Eng_res <- residuals(Eng_model1)
+report(Eng_res)
+hist(Eng_res)
+```
+```{r}
+Kor_res <- residuals(Kor_model1)
+report(Kor_res)
+hist(Kor_res)
+```
+
+```{r}
+geom_point()
+qqnorm(Eng_res)
+qqline(Eng_res)
+```
+```{r}
+qqnorm(Kor_res)
+qqline(Kor_res)
+```
+```{r}
+plot(fitted(Eng_model1), Eng_res)
+```
+
+```{r}
+plot(fitted(Kor_model1), Kor_res)
+```
+
+
+# References 
+- Jaehwan Hyun, Akihisa Setoguchi & Mary Augusta Brazelton (2022) Some Reflections on the History of Masked Societies in East Asia, East Asian Science, Technology and Society: An International Journal
+
+- Sönnichsen, Rasmus∗; Llorach Tó, Gerard†; Hochmuth, Sabine∗; Hohmann, Volker†,‡,§; Radeloff, Andreas∗,‡,§. How Face Masks Interfere With Speech Understanding of Normal-Hearing Individuals: Vision Makes the Difference. Otology & Neurotology: March 2022 - Volume 43 - Issue 3 - p 282-288
+
+- Rahne T, Fröhlich L, Plontke S, Wagner L (2021) Influence of surgical and N95 face masks on speech perception and listening effort in noise.
+
+- Yee, Sang & Anderson, Victoria. (2008). Acoustic and Perceptual Similarities Between English and Korean Sibilants: Implications for Second Language Acquisition. Korean Linguistics. 14. 
+
+- Nguyen, D.D., McCabe, P., Thomas, D. et al. Acoustic voice characteristics with and without wearing a facemask. Sci Rep 11, 5651 (2021).
+
+- McFarland DH, Baum SR. Incomplete compensation to articulatory perturbation. J Acoust Soc Am. 1995 Mar;97(3):1865-73.
